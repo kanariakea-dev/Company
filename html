@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="利用者様一人ひとりに寄り添い、安心と快適な生活をサポートいたします。">
+  <meta property="og:title" content="合同会社カナリアケアプラン">
+  <meta property="og:description" content="利用者様一人ひとりに寄り添い、安心と快適な生活をサポートいたします。">
+  <meta property="og:image" content="https://toriaez-hp.jp/assets/2-0500003290/slide_001.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <title>合同会社カナリアケアプラン</title>
+  <style>
+    /* === RESET & BASE === */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+      color: #333;
+      background: #fff;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* === COLORS === */
+    :root {
+      --green: #4a9170;
+      --green-dark: #35724f;
+      --green-light: #e8f5ee;
+      --accent: #f5a623;
+      --text: #333;
+      --text-light: #666;
+      --border: #dde8e2;
+      --bg-soft: #f7faf8;
+    }
+
+    /* === UTILITY === */
+    .page { display: none; }
+    .page.active { display: block; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 16px; }
+    .section { padding: 40px 0; }
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      border-left: 4px solid var(--green);
+      padding-left: 12px;
+      margin-bottom: 20px;
+    }
+    .breadcrumb {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      margin-bottom: 24px;
+    }
+    .breadcrumb a { color: var(--green); }
+    .breadcrumb span { margin: 0 4px; }
+
+    /* === HEADER === */
+    #site-header {
+      background: var(--green);
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      height: 56px;
+    }
+    .site-logo {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      line-height: 1.3;
+      flex: 1;
+    }
+    .header-sub {
+      display: flex;
+      gap: 12px;
+      font-size: 0.75rem;
+    }
+    .header-sub a {
+      color: rgba(255,255,255,0.9);
+      white-space: nowrap;
+    }
+    .header-sub a:hover { color: #fff; text-decoration: underline; }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      background: none;
+      border: none;
+      margin-left: 12px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* === NAV === */
+    #main-nav {
+      background: var(--green-dark);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: stretch;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .nav-item {
+      position: relative;
+    }
+    .nav-link {
+      display: block;
+      padding: 12px 18px;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .nav-link:hover, .nav-link.active { background: var(--green); }
+
+    /* dropdown */
+    .nav-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--green);
+      min-width: 180px;
+      z-index: 500;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .nav-item:hover .nav-dropdown { display: block; }
+    .nav-dropdown a {
+      display: block;
+      padding: 10px 18px;
+      color: #fff;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .nav-dropdown a:hover { background: var(--green-dark); }
+
+    /* mobile nav */
+    #mobile-nav {
+      display: none;
+      background: var(--green-dark);
+      flex-direction: column;
+    }
+    #mobile-nav.open { display: flex; }
+    .mobile-nav-link {
+      padding: 13px 20px;
+      color: #fff;
+      font-size: 0.9rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+    }
+    .mobile-nav-link:hover { background: var(--green); }
+    .mobile-nav-sub { padding-left: 36px; font-size: 0.82rem; background: rgba(0,0,0,0.15); }
+
+    /* === HERO SLIDESHOW === */
+    #hero {
+      position: relative;
+      overflow: hidden;
+      background: var(--green-light);
+    }
+    .slide-track {
+      display: flex;
+      transition: transform 0.6s ease;
+    }
+    .slide {
+      min-width: 100%;
+    }
+    .slide img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+    .slide-dots {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.6);
+      cursor: pointer;
+      border: none;
+    }
+    .dot.active { background: #fff; }
+
+    /* hero caption */
+    .hero-caption {
+      background: var(--green);
+      color: #fff;
+      text-align: center;
+      padding: 20px 16px;
+    }
+    .hero-caption h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    /* === HOME SECTIONS === */
+    .news-section {
+      background: var(--bg-soft);
+      padding: 28px 0;
+    }
+    .news-item {
+      display: flex;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    .news-date { color: var(--green-dark); font-weight: 600; white-space: nowrap; }
+
+    .greeting-section { padding: 40px 0; }
+    .greeting-text { line-height: 1.9; margin-bottom: 20px; color: #444; }
+
+    /* === INQUIRY BUTTON === */
+    .btn-inquiry {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 14px 36px;
+      border-radius: 4px;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s, transform 0.1s;
+      text-decoration: none;
+      text-align: center;
+    }
+    .btn-inquiry:hover { background: #d4891a; transform: translateY(-1px); }
+    .btn-inquiry:active { transform: translateY(0); }
+    .btn-wrap { text-align: center; margin-top: 28px; }
+
+    /* === CONTENT PAGES === */
+    .content-image {
+      width: 100%;
+      border-radius: 6px;
+      margin: 20px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .content-block { margin-bottom: 36px; }
+    .content-block h3 {
+      font-size: 1.1rem;
+      color: var(--green-dark);
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--border);
+    }
+    .content-block p { color: #444; line-height: 1.85; }
+
+    /* === SERVICES === */
+    .service-card {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px 20px;
+      margin-bottom: 20px;
+    }
+    .service-card h3 {
+      font-size: 1.1rem;
+      color: var(--green-dark);
+      margin-bottom: 10px;
+    }
+    .service-card p { color: #555; line-height: 1.8; margin-bottom: 12px; }
+    .service-link {
+      display: inline-block;
+      color: var(--green);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .service-link:hover { text-decoration: underline; }
+
+    /* service detail */
+    .service-detail-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 6px;
+    }
+    .price-block {
+      background: var(--green-light);
+      border-left: 4px solid var(--green);
+      padding: 16px 20px;
+      margin: 16px 0;
+      border-radius: 0 6px 6px 0;
+    }
+    .price-block p { line-height: 2; color: #333; }
+    .price-total { font-weight: 700; color: var(--green-dark); margin-top: 6px; }
+
+    /* === FAQ === */
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .faq-q {
+      background: var(--green-light);
+      padding: 16px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .faq-q-label {
+      color: var(--green-dark);
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .faq-q-text { font-weight: 600; line-height: 1.5; }
+    .faq-a {
+      padding: 16px 20px;
+      background: #fff;
+    }
+    .faq-a-label {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-right: 8px;
+    }
+
+    /* === PROFILE === */
+    .profile-intro {
+      background: var(--green-light);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 28px;
+      line-height: 1.9;
+      color: #444;
+    }
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .info-table th, .info-table td {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+    .info-table th {
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-weight: 600;
+      width: 32%;
+      white-space: nowrap;
+    }
+    .info-table td { background: #fff; }
+
+    /* === MAP === */
+    .map-embed {
+      width: 100%;
+      height: 280px;
+      border: none;
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+
+    /* === CONTACT === */
+    .form-group { margin-bottom: 20px; }
+    .form-label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--green-dark);
+      margin-bottom: 6px;
+    }
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 10px 12px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      color: #333;
+      background: #fff;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 2px rgba(74,145,112,0.15);
+    }
+    .form-textarea { height: 140px; resize: vertical; }
+    .form-submit {
+      width: 100%;
+      background: var(--green);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .form-submit:hover { background: var(--green-dark); }
+    .form-note { font-size: 0.8rem; color: var(--text-light); margin-top: 8px; }
+    .required { color: #e53e3e; font-size: 0.75rem; margin-left: 4px; }
+
+    /* === FOOTER === */
+    #site-footer {
+      background: var(--green-dark);
+      color: rgba(255,255,255,0.9);
+      padding: 28px 16px;
+      margin-top: 40px;
+    }
+    .footer-inner { max-width: 900px; margin: 0 auto; }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .footer-links a:hover { color: #fff; text-decoration: underline; }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.6); }
+    .back-to-top {
+      display: block;
+      text-align: center;
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.85);
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+    .back-to-top:hover { background: rgba(255,255,255,0.2); }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 680px) {
+      .header-sub { display: none; }
+      .hamburger { display: flex; }
+      #main-nav { display: none; }
+      .slide img { height: 200px; }
+      .hero-caption h2 { font-size: 0.95rem; }
+      .info-table th { width: 38%; font-size: 0.82rem; }
+      .map-embed { height: 220px; }
+    }
+    @media (min-width: 681px) {
+      #mobile-nav { display: none !important; }
+    }
+  </style>
+</head>
+<body id="container">
+
+<!-- ====== HEADER ====== -->
+<header id="site-header">
+  <div class="header-inner">
+    <div class="site-logo" onclick="showPage('home')">合同会社カナリアケアプラン</div>
+    <nav class="header-sub">
+      <a onclick="showPage('contact')">お問い合わせ</a>
+      <a onclick="showPage('map')">地図・アクセス</a>
+      <a onclick="showPage('profile')">プロフィール</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="メニュー" onclick="toggleMobileNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- PC NAV -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <div class="nav-item">
+      <div class="nav-link" onclick="showPage('about')">当社について</div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-link" onclick="showPage('basic')">基本情報</div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-link" onclick="showPage('faq')">よくあるご質問</div>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div id="mobile-nav">
+  <div class="mobile-nav-link" onclick="showPage('about'); toggleMobileNav()">当社について</div>
+  <div class="mobile-nav-link" onclick="showPage('basic'); toggleMobileNav()">基本情報</div>
+  <div class="mobile-nav-link" onclick="showPage('faq'); toggleMobileNav()">よくあるご質問</div>
+  <div class="mobile-nav-link" onclick="showPage('profile'); toggleMobileNav()">プロフィール</div>
+  <div class="mobile-nav-link" onclick="showPage('map'); toggleMobileNav()">地図・アクセス</div>
+  <div class="mobile-nav-link" onclick="showPage('contact'); toggleMobileNav()">お問い合わせ</div>
+</div>
+
+<!-- ====== HOME ====== -->
+<div id="page-home" class="page active">
+
+  <!-- HERO SLIDESHOW -->
+  <section id="hero">
+    <div class="slide-track" id="slideTrack">
+      <div class="slide">
+        <img src="https://toriaez-hp.jp/assets/2-0500003290/slide_001.jpg" alt="スライド1">
+      </div>
+      <div class="slide">
+        <img src="https://toriaez-hp.jp/assets/2-0500003290/slide_002.jpg" alt="スライド2">
+      </div>
+    </div>
+    <div class="slide-dots">
+      <button class="dot active" onclick="goToSlide(0)"></button>
+      <button class="dot" onclick="goToSlide(1)"></button>
+    </div>
+  </section>
+  <div class="hero-caption">
+    <h2>利用者様一人ひとりに寄り添い、<br>安心と快適な生活をサポートいたします。</h2>
+  </div>
+
+  <!-- NAV BUTTONS -->
+  <div style="background:var(--bg-soft); padding:20px 16px;">
+    <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;">
+      <button onclick="showPage('about')" style="background:var(--green);color:#fff;border:none;padding:14px 8px;border-radius:6px;font-size:0.85rem;font-weight:600;cursor:pointer;">当社について</button>
+      <button onclick="showPage('basic')" style="background:var(--green);color:#fff;border:none;padding:14px 8px;border-radius:6px;font-size:0.85rem;font-weight:600;cursor:pointer;">基本情報</button>
+      <button onclick="showPage('faq')" style="background:var(--green);color:#fff;border:none;padding:14px 8px;border-radius:6px;font-size:0.85rem;font-weight:600;cursor:pointer;">よくあるご質問</button>
+    </div>
+  </div>
+
+  <!-- NEWS -->
+  <section class="news-section">
+    <div class="container">
+      <h2 class="section-title">おしらせ</h2>
+      <div class="news-item">
+        <span class="news-date">2026.06.03</span>
+        <span>ホームページが公開されました。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- GREETING -->
+  <section class="greeting-section">
+    <div class="container">
+      <h2 class="section-title">ごあいさつ</h2>
+      <p class="greeting-text">
+        このたびは当事業所のホームページをご覧いただき、ありがとうございます。当事業所では、利用者様が安心して過ごせる環境と、心温まるケアの提供を第一に考え、日々サービスの向上に努めております。
+      </p>
+      <p class="greeting-text">
+        地域に根ざした施設として、一人ひとりの生活スタイルやニーズに合わせた支援を行い、ご家族様にも安心してお任せいただける施設を目指しています。皆様が笑顔で毎日を過ごせるよう、スタッフ一同心を込めてサポートいたします。
+      </p>
+      <div class="btn-wrap">
+        <button class="btn-inquiry" onclick="showPage('contact')">お問い合わせはこちら</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER LINKS MINI -->
+  <div style="background:var(--green-light);padding:20px 16px;">
+    <div class="container">
+      <h2 class="section-title">プロフィール</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;">
+        <a onclick="showPage('profile')" style="color:var(--green);cursor:pointer;font-size:0.9rem;">プロフィール</a>
+        <a onclick="showPage('map')" style="color:var(--green);cursor:pointer;font-size:0.9rem;">地図・アクセス</a>
+        <a onclick="showPage('contact')" style="color:var(--green);cursor:pointer;font-size:0.9rem;">お問い合わせ</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /home -->
+
+<!-- ====== 当社について ====== -->
+<div id="page-about" class="page">
+  <div class="container section">
+    <div class="breadcrumb">
+      <a onclick="showPage('home')">Home</a><span>»</span> 当社について
+    </div>
+    <h2 class="section-title">当社について</h2>
+    <div class="content-block">
+      <p>利用者様が「安心して過ごせる場所」と感じられるよう、心を込めてサポートいたします。</p>
+      <img src="https://toriaez-hp.jp/assets/2-0500003290/menu1_box1_001.jpg" alt="当社について" class="content-image">
+    </div>
+    <div class="btn-wrap">
+      <button class="btn-inquiry" onclick="showPage('contact')">お問い合わせはこちら</button>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 基本情報 ====== -->
+<div id="page-basic" class="page">
+  <div class="container section">
+    <div class="breadcrumb">
+      <a onclick="showPage('home')">Home</a><span>»</span> 基本情報
+    </div>
+    <h2 class="section-title">基本情報</h2>
+    <div class="content-block">
+      <h3>プロフェッショナルなケアスタッフ</h3>
+      <p>介護福祉士や看護師などの資格を持つ経験豊富なスタッフが、利用者様一人ひとりに合わせたケアを提供いたします。日常のサポートから健康管理まで、専門知識と温かい心でしっかりサポートいたします。利用者様の状態を丁寧に記録し、ご家族とも連携しながら安心できる環境を整えます。</p>
+      <img src="https://toriaez-hp.jp/assets/2-0500003290/menu2_box1_001.jpg" alt="ケアスタッフ" class="content-image">
+    </div>
+    <div class="content-block">
+      <h3>個々のニーズに合わせたプログラム</h3>
+      <p>「日常生活を快適に過ごしたい」「リハビリに集中したい」「交流を通じて楽しみを見つけたい」など、利用者様それぞれの目的に合わせたプログラムを準備しております。初心者の方も安心してご利用いただけるよう、一人ひとりに最適なケアプランを提供しています。</p>
+      <img src="https://toriaez-hp.jp/assets/2-0500003290/menu2_box2_001.jpg" alt="プログラム" class="content-image">
+    </div>
+    <div class="btn-wrap">
+      <button class="btn-inquiry" onclick="showPage('contact')">お問い合わせはこちら</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- ====== よくあるご質問 ====== -->
+<div id="page-faq" class="page">
+  <div class="container section">
+    <div class="breadcrumb">
+      <a onclick="showPage('home')">Home</a><span>»</span> よくあるご質問
+    </div>
+    <h2 class="section-title">よくあるご質問</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-label">Q.</span>
+        <span class="faq-q-text">●●●●●●●に対応していますか？</span>
+      </div>
+      <div class="faq-a">
+        <span class="faq-a-label">A.</span>対応しています。<br>
+        ●●●●●●は、●●●●に対応しています。詳しくはスタッフまでお問い合わせください。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-label">Q.</span>
+        <span class="faq-q-text">●●●●●●●に対応していますか？</span>
+      </div>
+      <div class="faq-a">
+        <span class="faq-a-label">A.</span>対応しています。<br>
+        ●●●●●●は、●●●●に対応しています。詳しくはスタッフまでお問い合わせください。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-label">Q.</span>
+        <span class="faq-q-text">●●●●●●●に対応していますか？</span>
+      </div>
+      <div class="faq-a">
+        <span class="faq-a-label">A.</span>対応しています。<br>
+        ●●●●●●は、●●●●に対応しています。詳しくはスタッフまでお問い合わせください。
+      </div>
+    </div>
+
+    <div class="btn-wrap">
+      <button class="btn-inquiry" onclick="showPage('contact')">お問い合わせはこちら</button>
+    </div>
+  </div>
+</div>
+
+<!-- ====== プロフィール ====== -->
+<div id="page-profile" class="page">
+  <div class="container section">
+    <div class="breadcrumb">
+      <a onclick="showPage('home')">Home</a><span>»</span> プロフィール
+    </div>
+    <h2 class="section-title">プロフィール</h2>
+    <div class="profile-intro">
+      令和８年６月１日より開業いたしました。介護にお困りの方への相談支援を行って参ります。又介護保険制度で不明なことなども相談に応じますのでお気軽にご相談ください。
+    </div>
+    <table class="info-table">
+      <tr><th>会社名</th><td>カナリアケアプラン</td></tr>
+      <tr><th>代表者</th><td>佐藤 敦子</td></tr>
+      <tr><th>所在地</th><td>神奈川県横浜市緑区東本郷4-4-12-502</td></tr>
+      <tr><th>連絡先</th><td><a href="tel:0452718623" style="color:var(--green);">045-271-8623</a></td></tr>
+      <tr><th>事業内容</th><td>居宅介護支援事業</td></tr>
+      <tr><th>取引実績</th><td>取引実績を入れてください</td></tr>
+    </table>
+    <div class="btn-wrap">
+      <button class="btn-inquiry" onclick="showPage('contact')">お問い合わせはこちら</button>
+    </div>
+    <div style="margin-top:28px;">
+      <h2 class="section-title">私たちについて</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;">
+        <a onclick="showPage('profile')" style="color:var(--green);cursor:pointer;font-size:0.9rem;">合同会社カナリアケアプラン</a>
+        <a onclick="showPage('map')" style="color:var(--green);cursor:pointer;font-size:0.9rem;">地図・アクセス</a>
+        <a onclick="showPage('contact')" style="color:var(--green);cursor:pointer;font-size:0.9rem;">お問い合わせ</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 地図・アクセス ====== -->
+<div id="page-map" class="page">
+  <div class="container section">
+    <div class="breadcrumb">
+      <a onclick="showPage('home')">Home</a><span>»</span> 地図・アクセス
+    </div>
+    <h2 class="section-title">地図・アクセス</h2>
+    <iframe
+      class="map-embed"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.748121611695!2d139.74325655116644!3d35.65857688010235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b972148d72f%3A0x1312431bf75c7130!2z44CSMTA1LTAwMTEg5p2x5Lqs6YO95riv5Yy66Iqd5YWs5ZyS77yU5LiB55uu77yS4oiS77yY!5e0!3m2!1sja!2sjp!4v1622016476342!5m2!1sja!2sjp"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="地図">
+    </iframe>
+    <table class="info-table">
+      <tr><th>名称</th><td>合同会社カナリアケアプラン</td></tr>
+      <tr><th>所在地</th><td>横浜市緑区東本郷4-4-12-502</td></tr>
+      <tr><th>電話</th><td><a href="tel:0452718623" style="color:var(--green);">045-271-8623</a></td></tr>
+      <tr><th>コメント</th><td>鴨居駅から徒歩２０分<br>市営バス御嶽前で下車</td></tr>
+    </table>
+    <div class="btn-wrap">
+      <button class="btn-inquiry" onclick="showPage('contact')">お問い合わせはこちら</button>
+    </div>
+    <div style="margin-top:28px;">
+      <h2 class="section-title">私たちについて</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;">
+        <a onclick="showPage('profile')" style="color:var(--green);cursor:pointer;font-size:0.9rem;">合同会社カナリアケアプラン</a>
+        <a onclick="showPage('map')" style="color:var(--green);cursor:pointer;font-size:0.9rem;">地図・アクセス</a>
+        <a onclick="showPage('contact')" style="color:var(--green);cursor:pointer;font-size:0.9rem;">お問い合わせ</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== お問い合わせ ====== -->
+<div id="page-contact" class="page">
+  <div class="container section">
+    <div class="breadcrumb">
+      <a onclick="showPage('home')">Home</a><span>»</span> お問い合わせ
+    </div>
+    <h2 class="section-title">お問い合わせ</h2>
+    <p style="margin-bottom:24px;color:#555;line-height:1.8;">
+      ご相談・ご質問など、お気軽にお問い合わせください。<br>
+      スタッフより折り返しご連絡いたします。
+    </p>
+    <div id="contact-form">
+      <div class="form-group">
+        <label class="form-label">お名前<span class="required">※必須</span></label>
+        <input type="text" class="form-input" placeholder="山田 太郎">
+      </div>
+      <div class="form-group">
+        <label class="form-label">メールアドレス<span class="required">※必須</span></label>
+        <input type="email" class="form-input" placeholder="example@email.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">電話番号</label>
+        <input type="tel" class="form-input" placeholder="045-000-0000">
+      </div>
+      <div class="form-group">
+        <label class="form-label">お問い合わせ内容<span class="required">※必須</span></label>
+        <textarea class="form-textarea" placeholder="ご相談内容をご記入ください"></textarea>
+      </div>
+      <button class="form-submit" onclick="submitForm()">送信する</button>
+      <p class="form-note">※ご入力いただいた個人情報は、お問い合わせへの回答以外の目的には使用いたしません。</p>
+    </div>
+    <div id="contact-thanks" style="display:none;text-align:center;padding:40px 0;">
+      <div style="font-size:2rem;margin-bottom:12px;">✉️</div>
+      <h3 style="color:var(--green-dark);margin-bottom:12px;">送信が完了しました</h3>
+      <p style="color:#555;">お問い合わせありがとうございます。<br>内容を確認のうえ、スタッフよりご連絡いたします。</p>
+      <button onclick="showPage('home')" style="margin-top:24px;background:var(--green);color:#fff;border:none;padding:12px 28px;border-radius:4px;cursor:pointer;font-size:0.9rem;">トップページへ戻る</button>
+    </div>
+  </div>
+</div>
+
+<!-- ====== FOOTER ====== -->
+<footer id="site-footer">
+  <div class="footer-inner">
+    <a class="back-to-top" onclick="scrollToTop()">▲ トップへ戻る</a>
+    <div class="footer-links">
+      <a onclick="showPage('about')">当社について</a>
+      <a onclick="showPage('basic')">基本情報</a>
+      <a onclick="showPage('faq')">よくあるご質問</a>
+      <a onclick="showPage('profile')">プロフィール</a>
+      <a onclick="showPage('map')">地図・アクセス</a>
+      <a onclick="showPage('contact')">お問い合わせ</a>
+    </div>
+    <p class="footer-copy">copyright © 合同会社カナリアケアプラン some rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // ====== PAGE SWITCHING ======
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page-' + id);
+    if (target) {
+      target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    // update nav active state
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  }
+
+  // ====== HAMBURGER ======
+  function toggleMobileNav() {
+    const nav = document.getElementById('mobile-nav');
+    const btn = document.getElementById('hamburger');
+    nav.classList.toggle('open');
+    btn.classList.toggle('open');
+  }
+
+  // ====== SLIDESHOW ======
+  let currentSlide = 0;
+  const totalSlides = 2;
+
+  function goToSlide(n) {
+    currentSlide = n;
+    document.getElementById('slideTrack').style.transform = `translateX(-${n * 100}%)`;
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === n));
+  }
+
+  setInterval(() => {
+    goToSlide((currentSlide + 1) % totalSlides);
+  }, 4000);
+
+  // ====== SCROLL TO TOP ======
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ====== CONTACT FORM ======
+  function submitForm() {
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('contact-thanks').style.display = 'block';
+  }
+</script>
+</body>
+</html>
