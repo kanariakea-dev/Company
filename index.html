@@ -129,6 +129,7 @@
     font-family:'Zen Maru Gothic',sans-serif;
   }
   .hero-copy h1{font-size:1.85rem;font-weight:900;line-height:1.5;margin-bottom:14px;text-shadow:0 1px 8px rgba(31,110,118,.25);}
+  .hero-copy h1 .ln{display:inline-block;}
   .hero-copy p{font-size:.95rem;line-height:1.9;color:rgba(255,255,255,.95);margin-bottom:22px;}
   .hero-cta{display:flex;flex-wrap:wrap;gap:10px;}
   .btn{
@@ -239,6 +240,7 @@
   .c-card .val{font-family:'Zen Maru Gothic',sans-serif;font-size:1.35rem;font-weight:900;color:#fff;}
   .c-card .val.small{font-size:1rem;word-break:break-all;}
   .c-card .hours{font-size:.72rem;opacity:.8;margin-top:6px;}
+  .c-card .deny{font-size:.66rem;color:#ffd9c2;margin-top:8px;font-weight:700;letter-spacing:.02em;}
   .form-card{background:#fff;border-radius:18px;padding:26px 22px;color:var(--ink);}
   .form-card h3{color:var(--turquoise-dark);font-size:1.1rem;margin-bottom:6px;}
   .form-card .sub{font-size:.85rem;color:var(--ink-soft);margin-bottom:20px;}
@@ -279,7 +281,10 @@
     .nav-pc{display:none;}
     .burger{display:flex;}
     .hero-inner{grid-template-columns:1fr;text-align:center;padding-top:34px;}
-    .hero-copy h1{font-size:1.5rem;}
+    .hero-copy h1{font-size:1.32rem;line-height:1.55;}
+    .hero-facts .fact{padding:16px 6px;}
+    .hero-facts .fact .big{font-size:1.3rem;}
+    .hero-facts .fact .lbl{font-size:.68rem;line-height:1.4;}
     .hero-cta{justify-content:center;}
     .hero-art{max-width:230px;margin:6px auto 0;order:-1;}
     .about-grid{grid-template-columns:1fr;}
@@ -347,7 +352,7 @@
   <div class="hero-inner">
     <div class="hero-copy">
       <span class="tag">横浜市緑区の居宅介護支援事業所</span>
-      <h1>利用者様一人ひとりに寄り添い、<br>安心と快適な暮らしを。</h1>
+      <h1><span class="ln">利用者様一人ひとりに寄り添い、</span><span class="ln">安心と快適な暮らしを。</span></h1>
       <p>経験豊富なケアマネジャーが、介護のご相談からケアプランの作成・調整まで、丁寧にサポートいたします。介護保険のことでお困りの方は、お気軽にご相談ください。</p>
       <div class="hero-cta">
         <a href="#contact" class="btn btn-pink">ご相談・お問い合わせ →</a>
@@ -390,9 +395,9 @@
 <!-- key facts -->
 <div class="hero-facts">
   <div class="row">
-    <div class="fact"><div class="big">0<span style="font-size:1rem;">円</span></div><div class="lbl">ご利用者の自己負担<br>（介護保険で全額給付）</div></div>
-    <div class="fact"><div class="big">緑区</div><div class="lbl">横浜市緑区を中心に<br>対応</div></div>
-    <div class="fact"><div class="big">主任</div><div class="lbl">主任介護支援専門員が<br>担当</div></div>
+    <div class="fact"><div class="big">0<span style="font-size:1rem;">円</span></div><div class="lbl">ご利用者の自己負担</div></div>
+    <div class="fact"><div class="big">緑区</div><div class="lbl">横浜市緑区対応</div></div>
+    <div class="fact"><div class="big">主任</div><div class="lbl">主任ケアマネ在籍</div></div>
   </div>
 </div>
 
@@ -546,7 +551,7 @@
       <tr><th>事業所名</th><td>居宅介護支援事業所 カナリアケアプラン</td></tr>
       <tr><th>法人名</th><td>合同会社カナリアケアプラン</td></tr>
       <tr><th>管理者／主任介護支援専門員</th><td>佐藤 敦子</td></tr>
-      <tr><th>所在地</th><td>〒226-0002<br>神奈川県横浜市緑区東本郷4-4-12-502</td></tr>
+      <tr><th>所在地</th><td>〒226-0002<br>神奈川県横浜市緑区東本郷<span style="white-space:nowrap">4-4-12-502</span></td></tr>
       <tr><th>TEL / FAX</th><td><a href="tel:045-271-8623">045-271-8623</a></td></tr>
       <tr><th>E-mail</th><td><a href="mailto:kikiats822@gmail.com">kikiats822@gmail.com</a></td></tr>
       <tr><th>介護保険事業所番号</th><td>1473303194</td></tr>
@@ -568,7 +573,7 @@
       src="https://maps.google.com/maps?q=35.5110875,139.5783329&hl=ja&z=16&output=embed"
       allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="カナリアケアプランの地図"></iframe>
     <div class="access-note">
-      〒226-0002　神奈川県横浜市緑区東本郷4-4-12-502<br>
+      〒226-0002　神奈川県横浜市緑区東本郷<span style="white-space:nowrap">4-4-12-502</span><br>
       JR横浜線「鴨居駅」から徒歩約20分／市営バス「御嶽前」下車すぐ
     </div>
   </div>
@@ -586,11 +591,13 @@
         <div class="lbl">お電話でのご相談</div>
         <div class="val">045-271-8623</div>
         <div class="hours">平日 9:00〜17:00</div>
+        <div class="deny">※営業・勧誘のお電話はお断りします</div>
       </a>
       <a class="c-card" href="mailto:kikiats822@gmail.com">
         <div class="lbl">メールでのご相談</div>
         <div class="val small">kikiats822@gmail.com</div>
         <div class="hours">24時間受付</div>
+        <div class="deny">※営業・勧誘メールはお断りします</div>
       </a>
     </div>
 
